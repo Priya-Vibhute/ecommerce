@@ -9,8 +9,11 @@ public class PasswordValidator implements ConstraintValidator<PasswordMatch, Use
 
 	@Override
 	public boolean isValid(UserDto value, ConstraintValidatorContext context) {
+		//"Hello".equals("Hello")
 		// TODO Auto-generated method stub
-		return false;
+		return value.getPassword().equals(value.getConfirmPassword());
 	}
+	
+	
 
 }
