@@ -1,8 +1,12 @@
 package com.learn.Ecommerce.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,5 +28,10 @@ public class Product {
 	private String productDescription;
 	@Column(nullable = false)
 	private int productprice;
+	@ManyToOne
+	private Category category;
+	
+	@ManyToMany(mappedBy = "products")
+	private List<Order> orders;
 
 }

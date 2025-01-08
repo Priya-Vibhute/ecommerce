@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.learn.Ecommerce.Dto.UserDto;
@@ -69,6 +70,36 @@ public class UserController {
 		
 		return new ResponseEntity<UserDto>(updateUser,HttpStatus.OK);
 	}
+//	
+	@GetMapping("find-by-email/{emailId}")
+	public ResponseEntity<UserDto> getUserByEmail(@PathVariable String emailId)
+	{
+		
+		return new ResponseEntity<UserDto>(userService.getUserByEmail(emailId),HttpStatus.FOUND);
+	}
+	
+	
+	@GetMapping("find-by-firstname")
+	public ResponseEntity<List<UserDto>> getUsersBYFirstName(@RequestParam String fname)
+	{
+		
+		return new ResponseEntity<List<UserDto>>(userService.getUserByFirstName(fname),
+				HttpStatus.FOUND) ;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

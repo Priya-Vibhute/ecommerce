@@ -47,6 +47,8 @@ public class UserServiceImpl  implements UserService {
 	  
 		User user = userRepository.findById(id)
 	    .orElseThrow(()->new RuntimeException(id+" not found"));
+		
+		
 	    
 		return entityToDto(user);
 	}
@@ -86,7 +88,7 @@ public class UserServiceImpl  implements UserService {
 		userDto.setPassword(user.getPassword());
 		userDto.setEmailId(user.getEmailId());
 		userDto.setAge(user.getAge());
-		
+		userDto.setAddress(user.getAddress());
 		return userDto;
 	}
 
@@ -99,7 +101,27 @@ public class UserServiceImpl  implements UserService {
 		user.setPassword(userDto.getPassword());
 		user.setAge(userDto.getAge());
 		user.setEmailId(userDto.getEmailId());
+		user.setAddress(userDto.getAddress()	);
 		return user;
+	}
+
+	@Override
+	public UserDto getUserByEmail(String email) {
+		
+		User user=userRepository.findByEmailId(email)
+		.orElseThrow(()->new RuntimeException(email+"not found"));
+		
+		return entityToDto(user);
+		
+	}
+
+	@Override
+	public List<UserDto> getUserByFirstName(String firstName) {
+		List<UserDto> userDtoList = userRepository
+				.findByFirstName(firstName).stream()
+		.map(u->entityToDto(u)).collect(Collectors.toList());
+		
+		return userDtoList;
 	}
 
 }
