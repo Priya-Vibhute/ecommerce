@@ -9,11 +9,22 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.learn.Ecommerce.entity.Product;
 import com.learn.Ecommerce.projection.ProductProjection;
 
-@RepositoryRestResource(excerptProjection = ProductProjection.class)
+//@RepositoryRestResource(excerptProjection = ProductProjection.class)
 @CrossOrigin
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
   List<Product>	findByProductpriceLessThan(int price);
   List<Product>	findByProductpriceLessThanEqual(int price);
   List<Product> findByProductpriceBetween(int startPrice,int endPrice);
+//  Low to High
+  List<Product> findByOrderByProductpriceAsc();
+//  High  to low  
+  List<Product> findByOrderByProductpriceDesc();
+  
+  //A-Z
+  List<Product> findByOrderByProductNameAsc();
+  //z-A
+  List<Product> findByOrderByProductNameDesc();
+
+  
 }

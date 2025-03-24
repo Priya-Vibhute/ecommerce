@@ -24,14 +24,16 @@ public class Product {
 	private int productId;
 	@Column(nullable = false)
 	private String productName;
-	@Column(name = "description",nullable = false)
+	@Column(name = "description", nullable = false)
 	private String productDescription;
 	@Column(nullable = false)
 	private int productprice;
 	@ManyToOne
 	private Category category;
-	
+
 	@ManyToMany(mappedBy = "products")
 	private List<Order> orders;
+	
+	private String productImage;
 
 }
